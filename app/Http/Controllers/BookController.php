@@ -13,6 +13,12 @@ class BookController extends Controller
 
         // return view('books', ['books' => $books]);
         $books = Book::all();
-        return view('books', compact('books'));
+
+
+        return response()->json([
+            "success" => true,
+            "message" => "Get all resources",
+            "data" => $books
+        ], 200);
     }
 }
