@@ -13,11 +13,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
 Route::apiResource('/books', BookController::class)->only(['index', 'show']);
 Route::apiResource('/genres', GenreController::class)->only(['index', 'show']);
-Route::apiResource('/authors', AuthorController::class)-only(['index', 'show']);
+Route::apiResource('/authors', AuthorController::class)->only(['index', 'show']);
 
 Route::middleware(['auth:api'])->group(function () {
 
