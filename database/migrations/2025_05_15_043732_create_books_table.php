@@ -12,6 +12,8 @@ class CreateBooksTable extends Migration
             $table->id(); // id buku
             $table->string('title'); // judul buku
             $table->unsignedBigInteger('author_id'); // foreign key ke authors
+            $table->integer('stock')->default(0); // stok buku
+            $table->decimal('price', 10, 2); // harga buku
             $table->timestamps();
 
             // Membuat relasi foreign key dengan tabel authors

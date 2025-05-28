@@ -26,7 +26,9 @@ class BookController extends Controller
     public function store(Request $request) {
         $validator = Validator::make($request->all(),[
             'title' => 'required|string|max:100',
-            'author_id' => 'required|exists:authors,id'
+            'author_id' => 'required|exists:authors,id',
+            'stock' => 'required|integer|min:0',
+            'price' => 'required|numeric|min:0'
         ]);
     
         if ($validator->fails()) {
@@ -39,6 +41,8 @@ class BookController extends Controller
         $book = Book::create([
             'title' => $request->title,
             'author_id' => $request->author_id,
+            'stock' => $request->stock,
+            'price' => $request->price,
         ]);
 
         return response()->json([
@@ -79,7 +83,9 @@ class BookController extends Controller
         // 2.validator    
         $validator = Validator::make($request->all(),[
             'title' => 'required|string|max:100',
-            'author_id' => 'required|exists:authors,id'
+            'author_id' => 'required|exists:authors,id',
+            'stock' => 'required|integer|min:0',
+            'price' => 'required|numeric|min:0'
         ]);
 
         if ($validator->fails()) {
@@ -93,6 +99,8 @@ class BookController extends Controller
         $data = [
             'title' => $request->title,
             'author_id' => $request->author_id,
+            'stock' => $request->stock,
+            'price' => $request->price,
         ];
 
         // 4. update data baru kedatabase
